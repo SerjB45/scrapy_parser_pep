@@ -3,12 +3,13 @@ import re
 import scrapy
 
 from pep_parse.items import PepParseItem
+from pep_parse.settings import DOMAIN_PEP, NAME_SPIDER_PEP
 
 
 class PepSpider(scrapy.Spider):
-    name = 'pep'
-    allowed_domains = ['peps.python.org']
-    start_urls = ['https://peps.python.org/']
+    name = NAME_SPIDER_PEP
+    allowed_domains = [DOMAIN_PEP]
+    start_urls = [f'https://{d}/' for d in allowed_domains]
 
     def parse(self, response):
         links = response.xpath(

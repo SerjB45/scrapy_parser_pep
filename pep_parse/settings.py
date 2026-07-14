@@ -1,3 +1,5 @@
+from pathlib import Path
+
 BOT_NAME = 'pep_parse'
 
 SPIDER_MODULES = ['pep_parse.spiders']
@@ -16,3 +18,10 @@ FEEDS = {
 ITEM_PIPELINES = {
     'pep_parse.pipelines.PepParsePipeline': 300,
 }
+
+
+BASE_DIR = Path.cwd()
+DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
+
+NAME_SPIDER_PEP = 'pep'
+DOMAIN_PEP = 'peps.python.org'

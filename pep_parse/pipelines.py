@@ -1,9 +1,7 @@
 import csv
 import datetime as dt
-from pathlib import Path
 
-BASE_DIR = Path.cwd()
-DATETIME_FORMAT = '%Y-%m-%d_%H-%M-%S'
+from .settings import BASE_DIR, DATETIME_FORMAT
 
 
 class PepParsePipeline:
@@ -12,7 +10,6 @@ class PepParsePipeline:
         self.total = 0
 
     def process_item(self, item, spider):
-
         status = item.get('status', 'Unknown')
         self.status_summary[status] = self.status_summary.get(status, 0) + 1
         self.total += 1
@@ -25,7 +22,6 @@ class PepParsePipeline:
         self.create_file_with_status()
 
     def create_file_with_status(self):
-
         results = [('Статус', 'Количество')]
         results.extend(tuple(self.status_summary.items()))
         results.append(('Total', self.total))
